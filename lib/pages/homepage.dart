@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ...List.generate(textFieldData.length, (index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
+                        child: TextFormField(minLines: 1,maxLines: null,keyboardType: TextInputType.multiline,
                           controller: controllers[textFieldData[index]['label']]!,
                           style: TextStyle(
                             color: AppTextTheme.textFieldFontColor,

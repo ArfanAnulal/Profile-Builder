@@ -44,4 +44,23 @@ class AppTextTheme{
     fontSize: 20,
     fontWeight: FontWeight.w700,
   );
+
+  static const TextStyle bioName = TextStyle(
+    color: textFieldFontColor,
+    fontSize: 40,
+    fontWeight: FontWeight.bold
+  );
+
+  static const TextStyle bioDesignation = TextStyle(
+    color: textFieldFontColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w500
+  ); 
+
+  static const TextStyle bioBio = TextStyle(
+    color: textFieldFontColor,
+    fontSize: 15,
+    fontWeight: FontWeight.normal
+  );  
+  
 }
