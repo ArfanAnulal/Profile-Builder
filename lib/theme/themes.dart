@@ -20,7 +20,7 @@ class AppTheme{
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       labelStyle: TextStyle(color: Colors.white)
     ),
-    cardColor: primaryColor
+    cardColor: primaryColor,
   );
 }
 
