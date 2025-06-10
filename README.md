@@ -7,11 +7,37 @@ A simple and elegant Flutter application that allows users to create a personal 
 
 A picture is worth a thousand lines of code. Here is a quick demonstration of the app in action.
 
-![Home Screen](documentation/HomeScreen.png)
-![EnterData](documentation/EnterData.png)
-![Form Validation Snack Bar](documentation/FormValidation1.png)
-![Form Validation](documentation/FormValidation2.png)
-![Output](documentation/Output.png)
+<table>
+  <tr>
+    <td align="center">
+      <img src="documentation/HomeScreen.png" alt="Home Screen" width="250">
+      <br>
+      <sub><b>Home Screen</b></sub>
+    </td>
+    <td align="center">
+      <img src="documentation/EnterData.png" alt="Enter Data" width="250">
+      <br>
+      <sub><b>Enter Data Screen</b></sub>
+    </td>
+    <td align="center">
+      <img src="documentation/FormValidation1.png" alt="Form Validation Snack Bar" width="250">
+      <br>
+      <sub><b>Validation Snack Bar</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="documentation/FormValidation2.png" alt="Form Validation" width="250">
+      <br>
+      <sub><b>Form Validation Error</b></sub>
+    </td>
+    <td align="center">
+      <img src="documentation/Output.png" alt="Output" width="250">
+      <br>
+      <sub><b>Output Screen</b></sub>
+    </td>
+  </tr>
+</table>
 
 
 ## **✨ Features**
