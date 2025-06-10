@@ -26,27 +26,31 @@ class _PortfolioPageState extends State<PortfolioPage> {
         title: Text('Profile Builder', style: AppTextTheme.appBarText),
         centerTitle: true,
       ),
-      body: Card(
-        margin: EdgeInsets.all(16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        color: Theme.of(context).cardColor,
-        child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.only(top: 50, right: 16,left: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CircleAvatar(
-                radius: 60,
-                backgroundImage: FileImage(widget.imagePath),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Card(
+            margin: EdgeInsets.all(16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            color: Theme.of(context).cardColor,
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.only(top: 50, right: 16,left: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundImage: FileImage(widget.imagePath),
+                  ),
+                  Text('${widget.name}',style:AppTextTheme.bioName),
+                  Text('${widget.designation}',style:AppTextTheme.bioDesignation),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 40, top: 20),child: Text('${widget.bio}',style:AppTextTheme.bioBio)),
+                ],
               ),
-              Text('${widget.name}',style:AppTextTheme.bioName),
-              Text('${widget.designation}',style:AppTextTheme.bioDesignation),
-              Container(
-                margin: EdgeInsets.only(bottom: 40, top: 20),child: Text('${widget.bio}',style:AppTextTheme.bioBio)),
-            ],
+            ),
           ),
         ),
       ),

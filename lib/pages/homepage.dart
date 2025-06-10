@@ -13,11 +13,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final List<Map<String, String>> textFieldData = [
-    {'label': 'Name', 'hint': 'Enter Name'},
-    {'label': 'Designation', 'hint': 'Enter Designation'},
-    {'label': 'Bio', 'hint': 'Enter Bio'},
+    {'label': 'Name', 'hint': 'Enter Your Name'},
+    {'label': 'Designation', 'hint': 'e.g., Flutter Developer'},
+    {'label': 'Bio', 'hint': 'Enter Your Name'},
   ];
   final Map<String, TextEditingController> controllers = {
   'Name': TextEditingController(),
@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String? Name,Designation,Bio;
 
   bool submitMethod(_selectedImage){
-    if (_selectedImage != null){
+    if (_selectedImage != null && (_formKey.currentState!.validate())){
       setState(() {
       Name = controllers['Name']!.text;
       Designation = controllers['Designation']!.text;
@@ -36,12 +36,20 @@ class _MyHomePageState extends State<MyHomePage> {
       });
       return true;
     }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.red,
+            content: const Text('Invalid input, try again!')));
     return false;
+    }
   }
 
   @override
   void dispose() {
-
+    for (var controller in controllers.values) {
+      controller.dispose();
+    }
     super.dispose();
   }                          
 
@@ -57,85 +65,92 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Form(
           key: _formKey,
           child: Center(
-            child: Card(
-              margin: EdgeInsets.all(16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              color: Theme.of(context).cardColor,
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        'Enter Details',
-                        style: AppTextTheme.formHeading,
-                      ),
-                    ),
-                    ...List.generate(textFieldData.length, (index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(minLines: 1,maxLines: null,keyboardType: TextInputType.multiline,
-                          controller: controllers[textFieldData[index]['label']]!,
-                          style: TextStyle(
-                            color: AppTextTheme.textFieldFontColor,
+            child: SingleChildScrollView(
+              child: SafeArea(
+                child: Card(
+                  margin: EdgeInsets.all(16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  color: Theme.of(context).cardColor,
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Enter Details',
+                            style: AppTextTheme.formHeading,
                           ),
-                          decoration: InputDecoration(
-                            label: Text(textFieldData[index]['label']!),
-                            hint: Text(
-                              textFieldData[index]['hint']!,
-                              style: AppTextTheme.fieldText,
+                        ),
+                        ...List.generate(textFieldData.length, (index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(minLines: 1,maxLines: null,keyboardType: TextInputType.multiline,
+                              controller: controllers[textFieldData[index]['label']]!,
+                              style: TextStyle(
+                                color: AppTextTheme.textFieldFontColor,
+                              ),
+                              decoration: InputDecoration(
+                                label: Text(textFieldData[index]['label']!),
+                                hint: Text(
+                                  textFieldData[index]['hint']!,
+                                  style: AppTextTheme.fieldText,
+                                ),
+                              ),
+                              validator: (value) {
+                                  if (value == null || value.trim().isEmpty) {
+                                    return 'Please enter your ${textFieldData[index]['label']?.toLowerCase()}';
+                                  }
+                                  return null;
+                                },
+                            ),
+                          );
+                        }),
+                        Container(
+                          padding: EdgeInsets.all(8.0),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ImagePickerWidget(
+                                  onImageSelected: (File image) {
+                                    setState(() {
+                                      _selectedImage = image;
+                                    });
+                                  },
+                                ),
+                                SizedBox(width: 20),  
+                                ElevatedButton(
+                                  onPressed: () {
+                                    if (submitMethod(_selectedImage)) {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => PortfolioPage(
+                                            imagePath: _selectedImage!,
+                                            name:Name,
+                                            designation: Designation,
+                                            bio: Bio,
+                
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  child: Text('Submit'),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      );
-                    }),
-                    Container(
-                      padding: EdgeInsets.all(8.0),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            ImagePickerWidget(
-                              onImageSelected: (File image) {
-                                setState(() {
-                                  _selectedImage = image;
-                                });
-                              },
-                            ),
-                            SizedBox(width: 20),  
-                            ElevatedButton(
-                              onPressed: () {
-                                if (submitMethod(_selectedImage)) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PortfolioPage(
-                                        imagePath: _selectedImage!,
-                                        name:Name,
-                                        designation: Designation,
-                                        bio: Bio,
-
-                                      ),
-                                    ),
-                                  );
-                                }
-                                else{
-                                  print('no input');
-                                }
-                              },
-                              child: Text('Submit'),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
