@@ -1,6 +1,6 @@
 # **Profile Builder - A Flutter Learning Project**
 
-A simple and elegant Flutter application that allows users to create a personal profile card. This project was built by a second-year Computer Science student as a focused challenge to learn the fundamentals of the Flutter framework in under a week.
+A simple and elegant Flutter application that allows users to create a personal profile card. This project was built by, a second-year Computer Science student, as a focused challenge to learn the fundamentals of the Flutter framework in under a week. I built this during my time as an Intern at Webandcrafts as a Flutter Developer.
 
 
 ## **📸 Screenshots & Demo**
