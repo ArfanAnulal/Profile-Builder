@@ -36,6 +36,11 @@ A picture is worth a thousand lines of code. Here is a quick demonstration of th
       <br>
       <sub><b>Output Screen</b></sub>
     </td>
+    <td align="center">
+      <img src="documentation/demo.gif" alt="Demo" width="250">
+      <br>
+      <sub><b>Demo</b></sub>
+    </td>
   </tr>
 </table>
 
