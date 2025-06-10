@@ -17,7 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Map<String, String>> textFieldData = [
     {'label': 'Name', 'hint': 'Enter Your Name'},
     {'label': 'Designation', 'hint': 'e.g., Flutter Developer'},
-    {'label': 'Bio', 'hint': 'Enter Your Name'},
+    {'label': 'Bio', 'hint': 'Tell Us About Yourself'},
   ];
   final Map<String, TextEditingController> controllers = {
   'Name': TextEditingController(),
