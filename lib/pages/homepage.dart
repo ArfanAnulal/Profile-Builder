@@ -19,7 +19,31 @@ class _MyHomePageState extends State<MyHomePage> {
     {'label': 'Designation', 'hint': 'Enter Designation'},
     {'label': 'Bio', 'hint': 'Enter Bio'},
   ];
+  final Map<String, TextEditingController> controllers = {
+  'Name': TextEditingController(),
+  'Designation': TextEditingController(),
+  'Bio': TextEditingController(),
+};
   File? _selectedImage;
+  String? Name,Designation,Bio;
+
+  bool submitMethod(_selectedImage){
+    if (_selectedImage != null){
+      setState(() {
+      Name = controllers['Name']!.text;
+      Designation = controllers['Designation']!.text;
+      Bio = controllers['Bio']!.text;
+      });
+      return true;
+    }
+    return false;
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }                          
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          controller: controllers[textFieldData[index]['label']]!,
                           style: TextStyle(
                             color: AppTextTheme.textFieldFontColor,
                           ),
@@ -86,15 +111,22 @@ class _MyHomePageState extends State<MyHomePage> {
                             SizedBox(width: 20),  
                             ElevatedButton(
                               onPressed: () {
-                                if (_selectedImage != null) {
+                                if (submitMethod(_selectedImage)) {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => PortfolioPage(
                                         imagePath: _selectedImage!,
+                                        name:Name,
+                                        designation: Designation,
+                                        bio: Bio,
+
                                       ),
                                     ),
                                   );
+                                }
+                                else{
+                                  print('no input');
                                 }
                               },
                               child: Text('Submit'),

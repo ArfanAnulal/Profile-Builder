@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:profile_builder/theme/themes.dart';
 
 class PortfolioPage extends StatefulWidget {
-  const PortfolioPage({super.key, required this.imagePath});
+  const PortfolioPage({super.key, required this.imagePath,required this.name,required this.designation,required this.bio});
+  final String? name,designation,bio;
   final File imagePath;
 
   @override
@@ -19,6 +20,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
           title: Text('Profile Builder', style: AppTextTheme.appBarText),
           centerTitle: true,
         ),
+        body: Text('${widget.name}'),
     );
   }
 }
