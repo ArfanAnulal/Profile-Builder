@@ -1,18 +1,13 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:profile_builder/models/profile.dart';
 import 'package:profile_builder/theme/themes.dart';
 
 class PortfolioPage extends StatefulWidget {
   const PortfolioPage({
     super.key,
-    required this.imagePath,
-    required this.name,
-    required this.designation,
-    required this.bio,
+    required this.profile,
   });
-  final String? name, designation, bio;
-  final File imagePath;
+  final Profile profile;
 
   @override
   State<PortfolioPage> createState() => _PortfolioPageState();
@@ -44,13 +39,13 @@ class _PortfolioPageState extends State<PortfolioPage> {
                     tag: 'profile-pic',
                     child: CircleAvatar(
                       radius: 60,
-                      backgroundImage: FileImage(widget.imagePath),
+                      backgroundImage: FileImage(widget.profile.image),
                     ),
                   ),
-                  Text('${widget.name}',style:AppTextTheme.bioName),
-                  Text('${widget.designation}',style:AppTextTheme.bioDesignation),
+                  Text(widget.profile.name,style:AppTextTheme.bioName),
+                  Text(widget.profile.designation,style:AppTextTheme.bioDesignation),
                   Container(
-                    margin: EdgeInsets.only(bottom: 40, top: 20),child: Text('${widget.bio}',style:AppTextTheme.bioBio)),
+                    margin: EdgeInsets.only(bottom: 40, top: 20),child: Text(widget.profile.bio,style:AppTextTheme.bioBio)),
                 ],
               ),
             ),
