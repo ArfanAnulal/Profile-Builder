@@ -52,6 +52,8 @@ A picture is worth a thousand lines of code. Here is a quick demonstration of th
 * **Dynamic Form Inputs:** Clean input fields for essential details like Name, Designation, and Bio.
 * **Robust Form Validation:** Ensures that all fields are filled before submission, providing user-friendly feedback.
 * **Gallery Image Picker:** Seamlessly select a profile picture from the device's gallery using the image_picker package.
+* **Preview Image:** View the image before you submit as a tiny preview near the "Choose Image" button.
+* **Smooth Transitions:** The preview image transitions smoothly into the final profile card using a Hero a transition.
 * **Instant Profile Generation:** View the final, beautifully formatted profile card on a separate page.
 * **Custom Theming:** A sleek, custom dark-mode theme provides a consistent and visually appealing user experience.
 * **Structured Codebase:** The project is organized into logical directories for UI, themes, and reusable widgets, demonstrating professional coding practices.
