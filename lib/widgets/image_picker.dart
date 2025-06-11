@@ -30,12 +30,15 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
       onPressed: () => _pickImage(ImageSource.gallery),
       child: Row(
         children: [
-          CircleAvatar(
-                    radius: 20,
-                    backgroundImage: _image != null 
-      ? FileImage(_image!) as ImageProvider 
-      : const NetworkImage('https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png'),
-                  ),
+          Hero(
+            tag: 'profile-pic',
+            child: CircleAvatar(
+                      radius: 20,
+                      backgroundImage: _image != null 
+                  ? FileImage(_image!) as ImageProvider 
+                  : const NetworkImage('https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png'),
+                    ),
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 8,right: 36),
             child: const Text('Choose Image'),

@@ -40,9 +40,12 @@ class _PortfolioPageState extends State<PortfolioPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CircleAvatar(
-                    radius: 60,
-                    backgroundImage: FileImage(widget.imagePath),
+                  Hero(
+                    tag: 'profile-pic',
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundImage: FileImage(widget.imagePath),
+                    ),
                   ),
                   Text('${widget.name}',style:AppTextTheme.bioName),
                   Text('${widget.designation}',style:AppTextTheme.bioDesignation),
