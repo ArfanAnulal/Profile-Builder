@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:profile_builder/models/profile.dart';
 import 'package:profile_builder/pages/portfoliopage.dart';
 import 'package:profile_builder/theme/themes.dart';
 import 'package:profile_builder/widgets/image_picker.dart';
@@ -25,24 +26,31 @@ class _MyHomePageState extends State<MyHomePage> {
   'Bio': TextEditingController(),
 };
   File? _selectedImage;
-  String? Name,Designation,Bio;
+  
 
-  bool submitMethod(_selectedImage){
-    if (_selectedImage != null && (_formKey.currentState!.validate())){
-      setState(() {
-      Name = controllers['Name']!.text;
-      Designation = controllers['Designation']!.text;
-      Bio = controllers['Bio']!.text;
-      });
-      return true;
-    }
-    else{
+  void _submitForm(){
+    final isFormValid = _formKey.currentState!.validate();
+    if (_selectedImage == null || !isFormValid){
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.red,
             content: const Text('Invalid input, try again!')));
-    return false;
+            return;
     }
+    final profileData = Profile(
+    name: controllers['Name']!.text, 
+    designation: controllers['Designation']!.text, 
+    bio: controllers['Bio']!.text, 
+    image: _selectedImage!);
+    
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => PortfolioPage(
+        profile: profileData,
+      ),
+    ),
+  );
   }
 
   @override
@@ -126,22 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 SizedBox(width: 20),  
                                 ElevatedButton(
-                                  onPressed: () {
-                                    if (submitMethod(_selectedImage)) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => PortfolioPage(
-                                            imagePath: _selectedImage!,
-                                            name:Name,
-                                            designation: Designation,
-                                            bio: Bio,
-                
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  },
+                                  onPressed: _submitForm,
                                   child: Text('Submit'),
                                 ),
                               ],
